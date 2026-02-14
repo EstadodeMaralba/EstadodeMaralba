@@ -3,33 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gobierno del Estado del Caribe del Sur | Portal Soberano</title>
+    <title>Gobierno del Estado del Caribe del Sur</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --azul-profundo: #001a35;
-            --azul-institucional: #003366;
-            --azul-claro: #00a8e8;
-            --oro: #c5a021;
+            --azul-obsidiana: #000c1a;
+            --azul-soberano: #002855;
+            --oro: #d4af37;
             --blanco: #ffffff;
-            --gris-claro: #f4f7f9;
-            --negro: #121212;
+            --gris-base: #f1f3f5;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 
-        body { 
-            background: var(--gris-claro); 
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
-            color: var(--negro);
-            padding-top: 80px;
-            overflow-x: hidden;
-        }
+        body { background: var(--gris-base); padding-top: 90px; }
 
-        /* --- NAVEGACIÓN PREMIUM --- */
+        /* --- HEADER REFORZADO --- */
         header {
-            background: var(--azul-profundo);
-            height: 80px;
+            background: var(--azul-obsidiana);
+            height: 90px;
             width: 100%;
             position: fixed;
             top: 0;
@@ -38,298 +30,187 @@
             align-items: center;
             padding: 0 5%;
             z-index: 2000;
-            border-bottom: 4px solid var(--oro);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 5px solid var(--oro);
         }
 
-        .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
-        .brand img { height: 55px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
-        .brand-text h1 { font-size: 1rem; letter-spacing: 1px; line-height: 1; }
-        .brand-text p { font-size: 0.65rem; color: var(--oro); font-weight: bold; margin-top: 4px; }
+        .escudo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        /* El Escudo ahora es más grande y tiene prioridad visual */
+        .escudo-container img { height: 70px; width: auto; display: block; }
+        .texto-gob { color: white; line-height: 1.1; }
+        .texto-gob h1 { font-size: 1.1rem; letter-spacing: 1px; }
+        .texto-gob p { font-size: 0.7rem; color: var(--oro); font-weight: bold; }
 
-        .menu-toggle { font-size: 1.8rem; color: var(--oro); cursor: pointer; }
+        .btn-menu { font-size: 2rem; color: var(--oro); cursor: pointer; }
 
         nav {
             position: fixed;
-            top: 80px;
+            top: 90px;
             right: -100%;
             width: 100%;
-            height: calc(100vh - 80px);
-            background: var(--azul-profundo);
+            height: calc(100vh - 90px);
+            background: var(--azul-obsidiana);
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 30px;
+            transition: 0.4s;
             z-index: 1900;
         }
 
         nav.active { right: 0; }
-        nav a { 
-            color: var(--blanco); 
-            text-decoration: none; 
-            padding: 18px; 
-            font-size: 1.2rem; 
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-weight: 500;
-        }
+        nav a { color: white; text-decoration: none; padding: 20px; font-size: 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
         /* --- SECCIONES --- */
-        section { display: none; padding: 20px 5%; min-height: 85vh; max-width: 1200px; margin: 0 auto; }
-        section.active { display: block; animation: slideUp 0.5s ease-out; }
+        section { display: none; padding: 25px 5%; max-width: 1200px; margin: 0 auto; animation: fade 0.3s; }
+        section.active { display: block; }
+        @keyframes fade { from {opacity:0} to {opacity:1} }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .panel { background: white; padding: 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        h2 { color: var(--azul-soberano); border-left: 6px solid var(--oro); padding-left: 15px; margin-bottom: 25px; }
 
-        .card { 
-            background: var(--blanco); 
-            padding: 30px; 
-            border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-            margin-bottom: 25px;
-            border-top: 5px solid var(--azul-institucional);
+        /* --- GRID DE ORGANISMOS (AMPLIADO) --- */
+        .grid-ministerios { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card-min { 
+            background: white; padding: 25px; border-radius: 15px; 
+            border: 1px solid #ddd; cursor: pointer; transition: 0.3s;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
         }
+        .card-min:hover { transform: translateY(-5px); border-color: var(--oro); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card-min i { font-size: 2.5rem; color: var(--azul-soberano); margin-bottom: 15px; }
 
-        h2 { color: var(--azul-institucional); margin-bottom: 20px; font-size: 1.8rem; display: flex; align-items: center; gap: 10px; }
-        h2 i { color: var(--oro); }
-
-        /* --- GRID DE ORGANISMOS AMPLIADO --- */
-        .grid-orgs { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
-            margin-top: 20px;
-        }
-
-        .org-item { 
-            background: white; 
-            padding: 25px; 
-            border-radius: 12px; 
-            border: 1px solid #e1e8ed;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .org-item:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
-            border-color: var(--oro);
-        }
-
-        .org-item i { font-size: 2.5rem; color: var(--azul-institucional); margin-bottom: 15px; display: block; }
-        .org-item h3 { margin-bottom: 8px; color: var(--azul-profundo); }
-        .org-item p { font-size: 0.9rem; color: #666; }
-
-        /* --- MINISTERIO DE LA HORA (ADAPTATIVO) --- */
-        .reloj-hub {
-            background: linear-gradient(135deg, var(--azul-profundo), #003366);
+        /* --- RELOJ ESTATAL UTC-5 (INDEPENDIENTE DEL USUARIO) --- */
+        .reloj-estatal {
+            background: radial-gradient(circle, var(--azul-soberano), var(--azul-obsidiana));
             color: var(--oro);
             padding: 60px 20px;
+            border-radius: 25px;
             text-align: center;
-            border-radius: 20px;
-            border: 3px solid var(--oro);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 4px solid var(--oro);
         }
-
-        #clock-digital { 
-            font-size: clamp(3rem, 18vw, 7.5rem); 
-            font-family: 'Courier New', Courier, monospace; 
-            font-weight: bold; 
-            text-shadow: 0 0 20px rgba(197, 160, 33, 0.4);
-            margin: 15px 0;
+        #hora-real { 
+            font-size: clamp(3.5rem, 15vw, 8rem); 
+            font-family: 'Courier New', monospace; 
+            font-weight: bold;
             display: block;
+            margin: 20px 0;
         }
-
-        #date-official { color: white; font-size: clamp(1rem, 5vw, 1.5rem); letter-spacing: 1px; }
+        #fecha-real { color: white; font-size: 1.5rem; text-transform: uppercase; }
 
         /* --- VISOR PDF --- */
-        .pdf-frame {
-            width: 100%;
-            height: 75vh;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            margin-top: 15px;
-            background: #eee;
-        }
-
-        /* --- FOOTER --- */
-        footer { 
-            background: var(--azul-profundo); 
-            color: white; 
-            padding: 50px 20px; 
-            text-align: center; 
-            margin-top: 60px;
-            border-top: 5px solid var(--oro);
-        }
+        .visor-pdf { width: 100%; height: 80vh; border-radius: 10px; border: 2px solid var(--azul-soberano); background: #333; }
 
         @media (min-width: 768px) {
-            .menu-toggle { display: none; }
-            nav { position: static; height: auto; width: auto; flex-direction: row; background: none; padding: 0; }
-            nav a { border: none; font-size: 0.9rem; padding: 0 15px; }
-            nav a:hover { color: var(--oro); }
+            .btn-menu { display: none; }
+            nav { position: static; height: auto; width: auto; flex-direction: row; background: none; }
+            nav a { font-size: 0.9rem; border: none; }
         }
+
+        footer { background: var(--azul-obsidiana); color: white; text-align: center; padding: 60px; border-top: 5px solid var(--oro); }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="brand" onclick="showSection('inicio')">
-            <img src="Escudo del Estado del Caribe del Sur.png" alt="Escudo Nacional">
-            <div class="brand-text">
-                <h1>CARIBE DEL SUR</h1>
-                <p>GOBIERNO NACIONAL</p>
+        <a href="#" class="escudo-container" onclick="mostrar('inicio')">
+            <img src="Escudo del Estado del Caribe del Sur.png" alt="Escudo Oficial">
+            <div class="texto-gob">
+                <h1>ESTADO DEL CARIBE DEL SUR</h1>
+                <p>GOBIERNO SOBERANO</p>
             </div>
         </a>
-        <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-        <nav id="nav">
-            <a href="#" onclick="showSection('inicio')">INICIO</a>
-            <a href="#" onclick="showSection('historia')">HISTORIA</a>
-            <a href="#" onclick="showSection('organismos')">ORGANISMOS</a>
-            <a href="#" onclick="showSection('constitucion')">CONSTITUCIÓN</a>
-            <a href="#" onclick="showSection('hora')">HORA OFICIAL</a>
+        <div class="btn-menu" onclick="menu()"><i class="fas fa-bars"></i></div>
+        <nav id="navbar">
+            <a href="#" onclick="mostrar('inicio')">INICIO</a>
+            <a href="#" onclick="mostrar('historia')">HISTORIA</a>
+            <a href="#" onclick="mostrar('organismos')">MINISTERIOS</a>
+            <a href="#" onclick="mostrar('constitucion')">CONSTITUCIÓN</a>
+            <a href="#" onclick="mostrar('hora')">HORA LEGAL</a>
         </nav>
     </header>
 
     <section id="inicio" class="active">
-        <div class="card" style="text-align: center;">
-            <img src="Bandera del Estado del Caribe del Sur.png" alt="Bandera Nacional" style="width: 100%; max-width: 500px; height: auto; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 25px;">
-            <h1 style="color: var(--azul-profundo); margin-bottom: 10px;">Portal Oficial del Estado</h1>
-            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">Plataforma central de servicios gubernamentales, transparencia y soberanía territorial del Estado del Caribe del Sur.</p>
+        <div class="panel" style="text-align: center;">
+            <img src="Bandera del Estado del Caribe del Sur.png" style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+            <h1 style="margin-top: 30px; color: var(--azul-soberano);">Portal de Sincronización Nacional</h1>
+            <p>Acceso oficial a la infraestructura legal y administrativa de la nación.</p>
         </div>
     </section>
 
     <section id="historia">
-        <div class="card">
-            <h2><i class="fas fa-landmark"></i> Memoria Institucional</h2>
-            <p>El <strong>Estado del Caribe del Sur</strong> encuentra su génesis en el <strong>Estado de Pacisia</strong>, cuya lucha independentista culminó con la declaración oficial el <strong>1 de Enero de 2024</strong>.</p>
-            <br>
-            <p>Desde entonces, la nación ha mantenido una política de neutralidad y desarrollo. El <strong>13 de febrero de 2026</strong> se consolidó la soberanía mediante la anexión legal de territorios estratégicos, estableciendo el dominio actual sobre el mar y tierra firme.</p>
+        <div class="panel">
+            <h2>Nuestra Soberanía</h2>
+            <p>Herederos del <strong>Estado de Pacisia</strong>, el Caribe del Sur proclamó su independencia total el <strong>1 de enero de 2024</strong>.</p>
+            <p>El <strong>13 de febrero de 2026</strong>, mediante decreto supremo, se anexaron territorios estratégicos que hoy forman la base de nuestro poder regional.</p>
         </div>
     </section>
 
     <section id="organismos">
-        <h2><i class="fas fa-sitemap"></i> Estructura del Estado</h2>
-        <div class="grid-orgs">
-            <div class="org-item" onclick="showSection('hora')">
-                <i class="fas fa-clock"></i>
-                <h3>Ministerio de la Hora</h3>
-                <p>Custodio de la referencia temporal nacional UTC-5.</p>
-            </div>
-            <div class="org-item" onclick="showSection('org-seguridad')">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Seguridad Nacional</h3>
-                <p>Defensa de fronteras y orden público interno.</p>
-            </div>
-            <div class="org-item" onclick="showSection('org-exteriores')">
-                <h3><i class="fas fa-globe-americas"></i> Relaciones Exteriores</h3>
-                <p>Diplomacia soberana y tratados del Caribe.</p>
-            </div>
-            <div class="org-item" onclick="showSection('org-economia')">
-                <i class="fas fa-university"></i>
-                <h3>Hacienda y Economía</h3>
-                <p>Gestión presupuestaria y recursos nacionales.</p>
-            </div>
-            <div class="org-item" onclick="showSection('org-territorio')">
-                <i class="fas fa-map-marked-alt"></i>
-                <h3>Gestión del Territorio</h3>
-                <p>Administración de tierras anexionadas y catastro.</p>
-            </div>
-            <div class="org-item" onclick="showSection('org-mar')">
-                <i class="fas fa-anchor"></i>
-                <h3>Autoridad Marítima</h3>
-                <p>Soberanía sobre aguas territoriales y pesca.</p>
-            </div>
+        <h2>Ministerios del Estado</h2>
+        <div class="grid-ministerios">
+            <div class="card-min" onclick="mostrar('hora')"><i class="fas fa-clock"></i><h3>Ministerio de la Hora</h3><p>Precisión UTC-5 obligatoria.</p></div>
+            <div class="card-min"><i class="fas fa-shield-alt"></i><h3>Seguridad Nacional</h3><p>Defensa de fronteras.</p></div>
+            <div class="card-min"><i class="fas fa-balance-scale"></i><h3>Justicia</h3><p>Leyes y decretos públicos.</p></div>
+            <div class="card-min"><i class="fas fa-university"></i><h3>Economía</h3><p>Tesoro y Hacienda.</p></div>
+            <div class="card-min"><i class="fas fa-globe"></i><h3>Exteriores</h3><p>Cuerpo Diplomático.</p></div>
+            <div class="card-min"><i class="fas fa-anchor"></i><h3>Autoridad Marítima</h3><p>Soberanía de aguas.</p></div>
+            <div class="card-min"><i class="fas fa-satellite"></i><h3>Telecomunicaciones</h3><p>Redes nacionales.</p></div>
+            <div class="card-min"><i class="fas fa-Hard-hat"></i><h3>Obras Públicas</h3><p>Infraestructura vital.</p></div>
         </div>
     </section>
 
     <section id="constitucion">
-        <div class="card">
-            <h2><i class="fas fa-scroll"></i> Constitución Política</h2>
-            <p>Consulte el texto íntegro de nuestra carta magna, pilar de nuestras leyes:</p>
-            <div class="pdf-frame">
-                <iframe src="Constitución%20del%20Estado%20del%20Caribe%20del%20Sur.pdf"></iframe>
-            </div>
+        <div class="panel">
+            <h2>Carta Magna</h2>
+            <iframe class="visor-pdf" src="Constitución%20del%20Estado%20del%20Caribe%20del%20Sur.pdf"></iframe>
         </div>
     </section>
 
     <section id="hora">
-        <div class="reloj-hub">
-            <h2 style="color: white; border: none; justify-content: center; font-size: 1.2rem; opacity: 0.8;">MINISTERIO DE LA HORA</h2>
-            <p style="letter-spacing: 4px; font-weight: bold;">TIMEZONE: UTC -5</p>
-            <div id="clock-digital">00:00:00</div>
-            <div id="date-official">...</div>
-            <p style="margin-top: 30px; font-size: 0.8rem; color: #aaa;">Esta señal horaria es la única válida para trámites legales y oficiales en el Estado.</p>
-        </div>
-    </section>
-
-    <section id="org-seguridad">
-        <button onclick="showSection('organismos')" style="border:none; background:none; color:var(--azul-claro); cursor:pointer; font-weight:bold; margin-bottom:15px;"><i class="fas fa-arrow-left"></i> VOLVER</button>
-        <div class="card">
-            <h2>Ministerio de Seguridad Nacional</h2>
-            <p>Organismo encargado de la protección civil y la vigilancia de los límites territoriales establecidos el 13 de febrero.</p>
-        </div>
-    </section>
-
-    <section id="org-territorio">
-        <button onclick="showSection('organismos')" style="border:none; background:none; color:var(--azul-claro); cursor:pointer; font-weight:bold; margin-bottom:15px;"><i class="fas fa-arrow-left"></i> VOLVER</button>
-        <div class="card">
-            <h2>Ministerio de Gestión del Territorio</h2>
-            <p>Responsable de la planificación urbana, el desarrollo rural y la administración de los nuevos territorios soberanos.</p>
-        </div>
-    </section>
-
-    <section id="org-mar">
-        <button onclick="showSection('organismos')" style="border:none; background:none; color:var(--azul-claro); cursor:pointer; font-weight:bold; margin-bottom:15px;"><i class="fas fa-arrow-left"></i> VOLVER</button>
-        <div class="card">
-            <h2>Autoridad Marítima del Sur</h2>
-            <p>Vigilancia de las costas y regulación del tráfico marítimo nacional e internacional en nuestras aguas.</p>
+        <div class="reloj-estatal">
+            <h2>MINISTERIO DE LA HORA</h2>
+            <p style="letter-spacing: 5px;">ESTÁNDAR NACIONAL UTC-5</p>
+            <div id="hora-real">00:00:00</div>
+            <div id="fecha-real">...</div>
+            <p style="margin-top: 20px; opacity: 0.6; font-size: 0.8rem;">Esta hora se calcula mediante servidor central, independiente del dispositivo del usuario.</p>
         </div>
     </section>
 
     <footer>
-        <img src="Escudo del Estado del Caribe del Sur.png" alt="Escudo" style="height: 70px; margin-bottom: 20px;">
-        <p style="font-weight: bold; font-size: 1.2rem;">ESTADO DEL CARIBE DEL SUR</p>
-        <p style="opacity: 0.7; margin-top: 10px;">© 2026 - Todos los derechos reservados.</p>
-        <p style="font-size: 0.7rem; color: var(--oro); margin-top: 5px;">Soberanía • Justicia • Independencia</p>
+        <img src="Escudo del Estado del Caribe del Sur.png" style="height: 100px; margin-bottom: 20px;">
+        <h3>ESTADO DEL CARIBE DEL SUR</h3>
+        <p>© 2026 - Gobierno Independiente</p>
     </footer>
 
     <script>
-        // Navegación entre secciones
-        function showSection(id) {
+        function mostrar(id) {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.getElementById('nav').classList.remove('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            document.getElementById('navbar').classList.remove('active');
+            window.scrollTo(0,0);
         }
 
-        // Menú móvil
-        function toggleMenu() {
-            document.getElementById('nav').classList.toggle('active');
-        }
+        function menu() { document.getElementById('navbar').classList.toggle('active'); }
 
-        // Reloj de Precisión UTC-5
-        function updateClock() {
-            const now = new Date();
-            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const ecsTime = new Date(utc + (3600000 * -5));
+        // RELOJ UTC-5 BLINDADO (NO DEPENDE DEL LUGAR DEL USUARIO)
+        function relojOficial() {
+            const ahora = new Date();
+            // 1. Obtener la hora actual en milisegundos
+            // 2. Sumar el desfase local del usuario para llegar a UTC 0
+            // 3. Restar 5 horas (18,000,000 ms) para llegar a UTC-5 fijo
+            const utc0 = ahora.getTime() + (ahora.getTimezoneOffset() * 60000);
+            const utcMenos5 = new Date(utc0 - (3600000 * 5));
 
-            const h = String(ecsTime.getHours()).padStart(2, '0');
-            const m = String(ecsTime.getMinutes()).padStart(2, '0');
-            const s = String(ecsTime.getSeconds()).padStart(2, '0');
+            const h = String(utcMenos5.getHours()).padStart(2, '0');
+            const m = String(utcMenos5.getMinutes()).padStart(2, '0');
+            const s = String(utcMenos5.getSeconds()).padStart(2, '0');
 
-            const clockElement = document.getElementById('clock-digital');
-            if(clockElement) clockElement.textContent = `${h}:${m}:${s}`;
+            document.getElementById('hora-real').textContent = `${h}:${m}:${s}`;
             
-            const dateElement = document.getElementById('date-official');
-            if(dateElement) {
-                const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-                dateElement.textContent = ecsTime.toLocaleDateString('es-ES', options).toUpperCase();
-            }
+            const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('fecha-real').textContent = utcMenos5.toLocaleDateString('es-ES', opciones);
         }
 
-        setInterval(updateClock, 1000);
-        updateClock();
+        setInterval(relojOficial, 1000);
+        relojOficial();
     </script>
 </body>
-                </html>
-                
+</html>
