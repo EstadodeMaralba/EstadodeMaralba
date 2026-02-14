@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESTADO DEL CARIBE DEL SUR</title>
+    <title>ESTADO DEL CARIBE DEL SUR | PORTAL FEDERAL</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --azul-oscuro: #000c1a;
+            --negro-absoluto: #000000;
+            --gris-oscuro: #1a1a1a;
             --oro-brillante: #ffcc00;
-            --blanco-puro: #ffffff;
-            --negro-total: #000000;
+            --blanco: #ffffff;
+            --rojo-alerta: #ff4444;
         }
 
-        /* TIPOGRAFÍA DE ALTO IMPACTO */
+        /* DISEÑO DE ALTO CONTRASTE Y FUENTES GRUESAS */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
 
-        body { background: #d1d1d1; padding-top: 90px; color: var(--negro-total); }
+        body { background: #222; color: var(--blanco); padding-top: 100px; }
 
-        /* HEADER CON ESCUDO VISIBLE */
+        /* HEADER - NADA DE AZUL OSCURO SOBRE NEGRO */
         header {
-            background: var(--azul-oscuro);
-            height: 90px;
+            background: var(--negro-absoluto);
+            height: 100px;
             width: 100%;
             position: fixed;
             top: 0;
@@ -33,173 +34,161 @@
             border-bottom: 6px solid var(--oro-brillante);
         }
 
-        .header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .header-brand img { height: 70px; width: auto; background: white; border-radius: 5px; padding: 2px; }
-        .header-brand h1 { color: white; font-size: 1rem; }
+        .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .brand img { height: 80px; width: auto; background: var(--blanco); padding: 5px; border-radius: 5px; }
+        .brand h1 { color: var(--oro-brillante); font-size: 1.2rem; letter-spacing: 2px; }
 
-        .menu-icon { font-size: 2.5rem; color: var(--oro-brillante); cursor: pointer; }
+        .menu-toggle { font-size: 2.8rem; color: var(--oro-brillante); cursor: pointer; }
 
         nav {
             position: fixed;
-            top: 90px;
+            top: 100px;
             right: -100%;
             width: 100%;
             height: 100vh;
-            background: var(--azul-oscuro);
+            background: var(--negro-absoluto);
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            transition: 0.3s;
+            padding: 30px;
+            transition: 0.4s;
             z-index: 1900;
         }
 
         nav.active { right: 0; }
-        nav a { color: white; text-decoration: none; padding: 20px; font-size: 1.5rem; border-bottom: 3px solid var(--oro-brillante); }
+        nav a { color: var(--blanco); text-decoration: none; padding: 25px; font-size: 1.8rem; border-bottom: 4px solid var(--oro-brillante); }
 
-        /* SECCIONES CON LETRAS CLARAS */
-        section { display: none; padding: 20px; max-width: 1200px; margin: 0 auto; }
-        section.active { display: block; }
+        /* SECCIONES */
+        section { display: none; padding: 30px 5%; max-width: 1400px; margin: 0 auto; }
+        section.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .container { 
-            background: var(--blanco-puro); 
-            padding: 30px; 
-            border-radius: 10px; 
-            border: 5px solid var(--negro-total);
-            box-shadow: 10px 10px 0px var(--azul-oscuro);
+        .card-soberana { 
+            background: var(--blanco); 
+            color: var(--negro-absoluto);
+            padding: 40px; 
+            border-radius: 15px; 
+            border: 8px solid var(--oro-brillante);
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+            margin-bottom: 30px;
         }
 
-        h2 { font-size: 2rem; margin-bottom: 20px; text-transform: uppercase; background: var(--oro-brillante); padding: 5px 10px; display: inline-block; }
-        p { font-size: 1.4rem; font-weight: bold; line-height: 1.3; margin-bottom: 15px; }
+        h2 { font-size: 2.5rem; margin-bottom: 25px; background: var(--negro-absoluto); color: var(--oro-brillante); padding: 10px; display: inline-block; }
+        p { font-size: 1.5rem; line-height: 1.4; margin-bottom: 20px; font-weight: 900; }
 
-        /* RELOJ SOBERANO - MÁXIMA VISIBILIDAD */
-        .reloj-box {
-            background: var(--blanco-puro);
-            color: var(--negro-total);
-            padding: 50px 10px;
-            border: 8px solid var(--negro-total);
-            text-align: center;
-            border-radius: 20px;
+        /* GRID DE 10 ORGANISMOS */
+        .grid-organismos { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
         }
-
-        #reloj-txt { 
-            font-size: clamp(3.5rem, 18vw, 9rem); 
-            display: block; 
-            background: var(--negro-total); 
-            color: var(--oro-brillante); 
-            margin: 20px 0;
-            padding: 10px;
+        .org-box { 
+            background: var(--gris-oscuro); 
+            padding: 40px; 
+            border: 5px solid var(--oro-brillante); 
+            text-align: center; 
+            transition: 0.3s;
+            cursor: pointer;
         }
+        .org-box:hover { background: var(--oro-brillante); }
+        .org-box:hover i, .org-box:hover h3 { color: var(--negro-absoluto); }
+        .org-box i { font-size: 4rem; color: var(--oro-brillante); margin-bottom: 20px; }
+        .org-box h3 { color: var(--blanco); font-size: 1.6rem; }
 
-        #fecha-txt { font-size: 1.8rem; text-transform: uppercase; border-top: 4px solid var(--negro-total); padding-top: 10px; }
+        /* PDF VISOR */
+        .pdf-frame { width: 100%; height: 85vh; border: 10px solid var(--oro-brillante); border-radius: 10px; }
 
-        /* GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .card { background: var(--oro-brillante); padding: 20px; border: 4px solid var(--negro-total); text-align: center; cursor: pointer; }
-        .card i { font-size: 3rem; margin-bottom: 10px; }
-
-        footer { background: var(--azul-oscuro); color: white; text-align: center; padding: 50px 10px; border-top: 8px solid var(--oro-brillante); }
+        footer { 
+            background: var(--negro-absoluto); 
+            padding: 100px 20px; 
+            text-align: center; 
+            border-top: 10px solid var(--oro-brillante); 
+        }
+        footer h2 { background: none; font-size: 3rem; color: var(--blanco); }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="header-brand" onclick="navTo('inicio')">
+        <a href="#" class="brand" onclick="go('inicio')">
             <img src="Escudo del Estado del Caribe del Sur.png" alt="ESCUDO">
-            <h1>CARIBE DEL SUR</h1>
+            <div class="brand-text">
+                <h1>CARIBE DEL SUR</h1>
+            </div>
         </a>
-        <div class="menu-icon" onclick="toggleM()"><i class="fas fa-bars"></i></div>
-        <nav id="menu">
-            <a href="#" onclick="navTo('inicio')">INICIO</a>
-            <a href="#" onclick="navTo('organismos')">MINISTERIOS</a>
-            <a href="#" onclick="navTo('constitucion')">CONSTITUCIÓN</a>
-            <a href="#" onclick="navTo('hora')">HORA UTC-5</a>
+        <div class="menu-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
+        <nav id="nav">
+            <a href="#" onclick="go('inicio')">INICIO</a>
+            <a href="#" onclick="go('historia')">HISTORIA</a>
+            <a href="#" onclick="go('gabinete')">GABINETE</a>
+            <a href="#" onclick="go('constitucion')">CONSTITUCIÓN</a>
+            <a href="#" onclick="go('defensa')">DEFENSA</a>
         </nav>
     </header>
 
     <section id="inicio" class="active">
-        <div class="container" style="text-align:center;">
-            <img src="Bandera del Estado del Caribe del Sur.png" style="width:100%; border: 5px solid black;">
-            <h2 style="margin-top:20px;">GOBIERNO CENTRAL</h2>
-            <p>PORTAL SOBERANO DEL ESTADO DEL CARIBE DEL SUR.</p>
+        <div class="card-soberana" style="text-align: center;">
+            <img src="Bandera del Estado del Caribe del Sur.png" style="width: 100%; max-width: 900px; border: 8px solid black;">
+            <h1 style="font-size: 3.5rem; margin-top: 20px;">ESTADO SOBERANO</h1>
+            <p>BIENVENIDO AL PORTAL DE CONTROL CENTRAL. AQUÍ SE GESTIONA EL DESTINO DE NUESTRA NACIÓN.</p>
         </div>
     </section>
 
-    <section id="organismos">
-        <div class="grid">
-            <div class="card" onclick="navTo('hora')"><i class="fas fa-clock"></i><h3>MINISTERIO DE LA HORA</h3></div>
-            <div class="card"><i class="fas fa-shield-alt"></i><h3>SEGURIDAD</h3></div>
-            <div class="card"><i class="fas fa-anchor"></i><h3>MARINA</h3></div>
-            <div class="card"><i class="fas fa-balance-scale"></i><h3>JUSTICIA</h3></div>
+    <section id="historia">
+        <div class="card-soberana">
+            <h2>NUESTRA LUCHA</h2>
+            <p>EL ESTADO DEL CARIBE DEL SUR NO PIDE PERMISO. NACIDO DE PACISIA EL 1 DE ENERO DE 2024.</p>
+            <p>EL 13 DE FEBRERO DE 2026 AMPLIAMOS NUESTRAS FRONTERAS POR DERECHO HISTÓRICO Y FUERZA SOBERANA.</p>
+        </div>
+    </section>
+
+    <section id="gabinete">
+        <h2 style="margin-bottom: 40px;">MINISTERIOS DEL ESTADO</h2>
+        <div class="grid-organismos">
+            <div class="org-box" onclick="go('defensa')"><i class="fas fa-shield-alt"></i><h3>SEGURIDAD Y DEFENSA</h3></div>
+            <div class="org-box"><i class="fas fa-anchor"></i><h3>ALMIRANTAZGO MARÍTIMO</h3></div>
+            <div class="org-box"><i class="fas fa-gavel"></i><h3>JUSTICIA Y LEYES</h3></div>
+            <div class="org-box"><i class="fas fa-university"></i><h3>HACIENDA PÚBLICA</h3></div>
+            <div class="org-box"><i class="fas fa-globe-americas"></i><h3>RELACIONES EXTERIORES</h3></div>
+            <div class="org-box"><i class="fas fa-broadcast-tower"></i><h3>INTELIGENCIA Y COMUNICACIÓN</h3></div>
+            <div class="org-box"><i class="fas fa-tools"></i><h3>OBRAS PÚBLICAS</h3></div>
+            <div class="org-box"><i class="fas fa-briefcase-medical"></i><h3>SALUD NACIONAL</h3></div>
+            <div class="org-box"><i class="fas fa-graduation-cap"></i><h3>EDUCACIÓN SOBERANA</h3></div>
+            <div class="org-box"><i class="fas fa-oil-can"></i><h3>RECURSOS NATURALES</h3></div>
+        </div>
+    </section>
+
+    <section id="defensa">
+        <div class="card-soberana" style="background: var(--rojo-alerta); color: white; border-color: black;">
+            <h2 style="background: black; color: white;">ESTADO DE ALERTA</h2>
+            <p>LAS FUERZAS DE SEGURIDAD PROTEGEN CADA CENTÍMETRO DEL TERRITORIO ANEXIONADO EL 13 DE FEBRERO.</p>
+            <p>LA VIGILANCIA EN EL MAR CARIBE ES PERMANENTE E INNEGOCIABLE.</p>
         </div>
     </section>
 
     <section id="constitucion">
-        <div class="container">
-            <h2>CONSTITUCIÓN</h2>
-            <iframe src="Constitución%20del%20Estado%20del%20Caribe%20del%20Sur.pdf" style="width:100%; height:70vh;"></iframe>
-        </div>
-    </section>
-
-    <section id="hora">
-        <div class="reloj-box">
-            <h2 style="background:black; color:white;">MINISTERIO DE LA HORA</h2>
-            <p>TIEMPO OFICIAL UTC-5 (SINCRONIZADO)</p>
-            <div id="reloj-txt">CARGANDO...</div>
-            <div id="fecha-txt">---</div>
-            <p style="font-size: 1rem; margin-top: 20px;">ESTE RELOJ NO DEPENDE DEL TELÉFONO. CONSULTA SERVIDORES ATÓMICOS EXTERNOS.</p>
+        <div class="card-soberana">
+            <h2>CARTA MAGNA</h2>
+            <div class="pdf-frame">
+                <iframe src="Constitución%20del%20Estado%20del%20Caribe%20del%20Sur.pdf" width="100%" height="100%"></iframe>
+            </div>
         </div>
     </section>
 
     <footer>
-        <img src="Escudo del Estado del Caribe del Sur.png" style="height:100px; background:white; padding:5px; margin-bottom:10px;">
+        <img src="Escudo del Estado del Caribe del Sur.png" style="height: 180px; background: white; padding: 10px; margin-bottom: 30px; border: 5px solid gold;">
         <h2>ESTADO DEL CARIBE DEL SUR</h2>
+        <p style="font-size: 1.5rem; color: var(--oro-brillante);">SOBERANÍA • PODER • JUSTICIA</p>
     </footer>
 
     <script>
-        let timeInMs = 0;
-
-        async function syncTime() {
-            try {
-                // Obtenemos la hora de una API que devuelve UTC puro
-                const r = await fetch('https://worldtimeapi.org/api/timezone/Etc/GMT+5');
-                const data = await r.json();
-                timeInMs = new Date(data.datetime).getTime();
-            } catch(e) {
-                // Respaldo manual UTC-5 si falla la red
-                const now = new Date();
-                timeInMs = now.getTime() + (now.getTimezoneOffset() * 60000) - 18000000;
-            }
-        }
-
-        function tick() {
-            if (timeInMs === 0) return;
-            
-            timeInMs += 1000; // Sumamos 1 segundo internamente
-            const d = new Date(timeInMs);
-            
-            const h = String(d.getHours()).padStart(2, '0');
-            const m = String(d.getMinutes()).padStart(2, '0');
-            const s = String(d.getSeconds()).padStart(2, '0');
-            
-            document.getElementById('reloj-txt').textContent = `${h}:${m}:${s}`;
-            
-            const opt = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-            document.getElementById('fecha-txt').textContent = d.toLocaleDateString('es-ES', opt);
-        }
-
-        function navTo(id) {
+        function go(id) {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.getElementById('menu').classList.remove('active');
+            document.getElementById('nav').classList.remove('active');
             window.scrollTo(0,0);
         }
 
-        function toggleM() { document.getElementById('menu').classList.toggle('active'); }
-
-        syncTime();
-        setInterval(tick, 1000);
-        // Resincronizar cada 5 minutos por si acaso
-        setInterval(syncTime, 300000);
+        function toggleNav() { document.getElementById('nav').classList.toggle('active'); }
     </script>
 </body>
 </html>
