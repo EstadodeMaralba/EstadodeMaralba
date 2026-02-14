@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gobierno del Estado del Caribe del Sur</title>
+    <title>GOBIERNO DEL ESTADO DEL CARIBE DEL SUR</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --azul-oscuro: #000c1a;
-            --azul-gob: #002855;
-            --oro: #d4af37;
+            --azul-negro: #000814;
+            --azul-fuerte: #001d3d;
+            --oro: #ffc300; /* Oro más brillante para legibilidad */
             --blanco: #ffffff;
-            --gris: #f8f9fa;
+            --texto-oscuro: #000814;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', Gadget, sans-serif; }
 
-        body { background: var(--gris); padding-top: 100px; color: #333; }
+        body { background: #e5e5e5; padding-top: 100px; color: var(--texto-oscuro); }
 
         /* --- HEADER --- */
         header {
-            background: var(--azul-oscuro);
+            background: var(--azul-negro);
             height: 100px;
             width: 100%;
             position: fixed;
@@ -30,15 +30,15 @@
             align-items: center;
             padding: 0 5%;
             z-index: 2000;
-            border-bottom: 5px solid var(--oro);
+            border-bottom: 6px solid var(--oro);
         }
 
-        .escudo-box { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .escudo-box img { height: 75px; width: auto; } /* Escudo grande y claro */
-        .brand-titles h1 { color: white; font-size: 1.1rem; letter-spacing: 1px; }
-        .brand-titles p { color: var(--oro); font-size: 0.7rem; font-weight: bold; }
+        .escudo-link { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .escudo-link img { height: 80px; width: auto; } 
+        .titulo-header h1 { color: var(--blanco); font-size: 1.2rem; text-transform: uppercase; }
+        .titulo-header p { color: var(--oro); font-size: 0.8rem; font-weight: bold; }
 
-        .burger { font-size: 2.2rem; color: var(--oro); cursor: pointer; }
+        .menu-btn { font-size: 2.5rem; color: var(--oro); cursor: pointer; }
 
         nav {
             position: fixed;
@@ -46,175 +46,184 @@
             right: -100%;
             width: 100%;
             height: calc(100vh - 100px);
-            background: var(--azul-oscuro);
+            background: var(--azul-fuerte);
             display: flex;
             flex-direction: column;
-            padding: 40px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px;
+            transition: 0.4s;
             z-index: 1900;
         }
 
         nav.active { right: 0; }
-        nav a { color: white; text-decoration: none; padding: 20px; font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        nav a { color: white; text-decoration: none; padding: 20px; font-size: 1.5rem; border-bottom: 2px solid var(--oro); font-weight: bold; }
 
-        /* --- SECCIONES --- */
-        section { display: none; padding: 30px 5%; max-width: 1200px; margin: 0 auto; }
-        section.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* --- CONTENIDO --- */
+        section { display: none; padding: 30px 5%; max-width: 1300px; margin: 0 auto; }
+        section.active { display: block; }
 
-        .card-main { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 8px solid var(--azul-gob); }
-        h2 { color: var(--azul-gob); margin-bottom: 25px; font-size: 2rem; }
-
-        /* --- RELOJ UTC-5 BLINDADO --- */
-        .reloj-hub {
-            background: linear-gradient(180deg, var(--azul-oscuro) 0%, var(--azul-gob) 100%);
-            color: var(--oro);
-            padding: 80px 20px;
-            border-radius: 30px;
-            text-align: center;
-            border: 4px solid var(--oro);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        .bloque { 
+            background: var(--blanco); 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2); 
+            border: 4px solid var(--azul-fuerte);
+            margin-bottom: 30px;
         }
-        #reloj-digital { 
-            font-size: clamp(3.5rem, 16vw, 9rem); 
-            font-family: 'monospace'; 
+
+        h2 { color: var(--azul-fuerte); font-size: 2.2rem; margin-bottom: 20px; border-bottom: 5px solid var(--oro); display: inline-block; }
+        p { font-size: 1.3rem; line-height: 1.5; font-weight: 900; margin-bottom: 15px; }
+
+        /* --- RELOJ SOBERANO (CALCULADO) --- */
+        .reloj-container {
+            background: var(--azul-negro);
+            color: var(--oro);
+            padding: 60px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 5px solid var(--oro);
+        }
+        #hora-display { 
+            font-size: clamp(3rem, 15vw, 8rem); 
             font-weight: bold;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            letter-spacing: 5px;
             margin: 20px 0;
             display: block;
         }
-        #fecha-oficial { color: white; font-size: 1.4rem; letter-spacing: 2px; }
+        #fecha-display { color: var(--blanco); font-size: 1.8rem; text-transform: uppercase; }
 
-        /* --- MINISTERIOS --- */
-        .grid-ministerios { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .min-box { 
-            background: white; padding: 30px; border-radius: 15px; text-align: center;
-            border: 1px solid #eee; transition: 0.3s; cursor: pointer;
+        /* --- MINISTERIOS GRID --- */
+        .grid-mins { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .min-card { 
+            background: var(--blanco); padding: 30px; border-radius: 15px; text-align: center;
+            border: 4px solid var(--azul-fuerte); cursor: pointer;
         }
-        .min-box:hover { transform: translateY(-10px); border-color: var(--oro); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .min-box i { font-size: 3rem; color: var(--azul-gob); margin-bottom: 15px; }
+        .min-card:hover { background: var(--oro); }
+        .min-card i { font-size: 4rem; color: var(--azul-fuerte); margin-bottom: 15px; }
+        .min-card h3 { font-size: 1.5rem; font-weight: 900; }
 
-        /* --- VISOR PDF --- */
-        .pdf-container { width: 100%; height: 85vh; border: 3px solid var(--azul-gob); border-radius: 15px; overflow: hidden; }
+        /* --- PDF --- */
+        .visor-container { width: 100%; height: 85vh; border: 5px solid var(--azul-fuerte); border-radius: 10px; }
 
-        @media (min-width: 768px) {
-            .burger { display: none; }
-            nav { position: static; height: auto; width: auto; flex-direction: row; background: none; }
-            nav a { font-size: 0.9rem; border: none; }
-        }
-
-        footer { background: var(--azul-oscuro); color: white; text-align: center; padding: 80px 20px; border-top: 6px solid var(--oro); }
+        footer { background: var(--azul-negro); color: var(--blanco); text-align: center; padding: 80px 20px; border-top: 8px solid var(--oro); }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="escudo-box" onclick="show('inicio')">
-            <img src="Escudo del Estado del Caribe del Sur.png" alt="Escudo Nacional">
-            <div class="brand-titles">
-                <h1>CARIBE DEL SUR</h1>
-                <p>ESTADO INDEPENDIENTE</p>
+        <a href="#" class="escudo-link" onclick="ir('inicio')">
+            <img src="Escudo del Estado del Caribe del Sur.png" alt="ESCUDO">
+            <div class="titulo-header">
+                <h1>ESTADO DEL CARIBE DEL SUR</h1>
+                <p>GOBIERNO CENTRAL</p>
             </div>
         </a>
-        <div class="burger" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
-        <nav id="menu">
-            <a href="#" onclick="show('inicio')">INICIO</a>
-            <a href="#" onclick="show('historia')">HISTORIA</a>
-            <a href="#" onclick="show('organismos')">MINISTERIOS</a>
-            <a href="#" onclick="show('constitucion')">CONSTITUCIÓN</a>
-            <a href="#" onclick="show('hora')">HORA UTC-5</a>
+        <div class="menu-btn" onclick="togg()"><i class="fas fa-bars"></i></div>
+        <nav id="m">
+            <a href="#" onclick="ir('inicio')">INICIO</a>
+            <a href="#" onclick="ir('historia')">HISTORIA</a>
+            <a href="#" onclick="ir('organismos')">MINISTERIOS</a>
+            <a href="#" onclick="ir('constitucion')">CONSTITUCIÓN</a>
+            <a href="#" onclick="ir('hora')">HORA UTC-5</a>
         </nav>
     </header>
 
     <section id="inicio" class="active">
-        <div class="card-main" style="text-align: center;">
-            <img src="Bandera del Estado del Caribe del Sur.png" style="width: 100%; max-width: 700px; border-radius: 10px; margin-bottom: 30px;">
-            <h2>Portal de Soberanía</h2>
-            <p style="font-size: 1.3rem;">Bienvenido al centro de mando digital del Estado del Caribe del Sur.</p>
+        <div class="bloque" style="text-align: center;">
+            <img src="Bandera del Estado del Caribe del Sur.png" style="width: 100%; max-width: 800px; border: 4px solid var(--azul-fuerte); margin-bottom: 20px;">
+            <h2>SISTEMA SOBERANO</h2>
+            <p>ESTA ES LA PLATAFORMA OFICIAL DE INFORMACIÓN Y CONTROL DEL ESTADO.</p>
         </div>
     </section>
 
     <section id="historia">
-        <div class="card-main">
-            <h2><i class="fas fa-history"></i> Memoria del Estado</h2>
-            <p>Nacido del <strong>Estado de Pacisia</strong>, el Caribe del Sur proclamó su libertad el <strong>1 de Enero de 2024</strong>.</p>
-            <p>La expansión territorial y consolidación marítima ocurrió el <strong>13 de febrero de 2026</strong>, definiendo nuestras fronteras actuales.</p>
+        <div class="bloque">
+            <h2>NUESTRA IDENTIDAD</h2>
+            <p>HEREDEROS DE PACISIA. INDEPENDENCIA: 1 DE ENERO DE 2024.</p>
+            <p>CONSOLIDACIÓN TERRITORIAL: 13 DE FEBRERO DE 2026.</p>
+            <p>EL ESTADO DEL CARIBE DEL SUR EJERCE PODER TOTAL SOBRE SUS AGUAS Y TIERRAS.</p>
         </div>
     </section>
 
     <section id="organismos">
-        <h2>Gabinete de Ministros</h2>
-        <div class="grid-ministerios">
-            <div class="min-box" onclick="show('hora')"><i class="fas fa-clock"></i><h3>Ministerio de la Hora</h3><p>Tiempo Legal UTC-5</p></div>
-            <div class="min-box"><i class="fas fa-shield-alt"></i><h3>Defensa Nacional</h3><p>Seguridad y Fronteras</p></div>
-            <div class="min-box"><i class="fas fa-landmark"></i><h3>Interior</h3><p>Gobernanza Territorial</p></div>
-            <div class="min-box"><i class="fas fa-anchor"></i><h3>Marina Mercante</h3><p>Control de Aguas</p></div>
-            <div class="min-box"><i class="fas fa-coins"></i><h3>Hacienda</h3><p>Tesoro Nacional</p></div>
-            <div class="min-box"><i class="fas fa-broadcast-tower"></i><h3>Comunicaciones</h3><p>Infraestructura Digital</p></div>
-            <div class="min-box"><i class="fas fa-briefcase"></i><h3>Exteriores</h3><p>Cuerpo Diplomático</p></div>
-            <div class="min-box"><i class="fas fa-gavel"></i><h3>Justicia</h3><p>Leyes y Decretos</p></div>
+        <h2>INFRAESTRUCTURA ESTATAL</h2>
+        <div class="grid-mins">
+            <div class="min-card" onclick="ir('hora')"><i class="fas fa-clock"></i><h3>MINISTERIO DE LA HORA</h3><p>CONTROL TEMPORAL</p></div>
+            <div class="min-card"><i class="fas fa-shield-alt"></i><h3>SEGURIDAD NACIONAL</h3><p>FUERZAS ARMADAS</p></div>
+            <div class="min-card"><i class="fas fa-anchor"></i><h3>AUTORIDAD MARÍTIMA</h3><p>CONTROL DEL MAR</p></div>
+            <div class="min-card"><i class="fas fa-balance-scale"></i><h3>JUSTICIA</h3><p>LEYES SUPREMAS</p></div>
+            <div class="min-card"><i class="fas fa-university"></i><h3>HACIENDA</h3><p>TESORO PÚBLICO</p></div>
+            <div class="min-card"><i class="fas fa-satellite"></i><h3>COMUNICACIONES</h3><p>REDES SOBERANAS</p></div>
         </div>
     </section>
 
     <section id="constitucion">
-        <div class="card-main">
-            <h2>Constitución Política</h2>
-            <div class="pdf-container">
+        <div class="bloque">
+            <h2>CARTA MAGNA</h2>
+            <div class="visor-container">
                 <iframe src="Constitución%20del%20Estado%20del%20Caribe%20del%20Sur.pdf" width="100%" height="100%"></iframe>
             </div>
         </div>
     </section>
 
     <section id="hora">
-        <div class="reloj-hub">
+        <div class="reloj-container">
             <h2>MINISTERIO DE LA HORA</h2>
-            <p style="letter-spacing: 6px; font-weight: bold; color: white;">HORA OFICIAL SOBERANA (UTC -5)</p>
-            <div id="reloj-digital">00:00:00</div>
-            <div id="fecha-oficial">...</div>
-            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.7;">Sincronización basada en tiempo atómico universal UTC -05:00. Independiente de la configuración del dispositivo local.</p>
+            <p>HORA OFICIAL SOBERANA UTC -5</p>
+            <div id="hora-display">00:00:00</div>
+            <div id="fecha-display">...</div>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: white;">SINCRONIZADO CON SERVIDOR EXTERNO. ESTE RELOJ ES INMUNE A CAMBIOS EN EL TELÉFONO.</p>
         </div>
     </section>
 
     <footer>
-        <img src="Escudo del Estado del Caribe del Sur.png" style="height: 120px; margin-bottom: 25px;">
-        <h2 style="color: white; border: none;">ESTADO DEL CARIBE DEL SUR</h2>
-        <p>Soberanía • Justicia • Independencia</p>
-        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.5;">© 2026 Portal Gubernamental</p>
+        <img src="Escudo del Estado del Caribe del Sur.png" style="height: 150px; margin-bottom: 20px;">
+        <h2>ESTADO DEL CARIBE DEL SUR</h2>
+        <p>ORDEN • PODER • JUSTICIA</p>
     </footer>
 
     <script>
-        function show(id) {
+        let offsetGlobal = 0;
+
+        async function sync() {
+            try {
+                // Consultamos servidor externo para que no dependa del teléfono
+                const res = await fetch('https://worldtimeapi.org/api/timezone/Etc/GMT+5');
+                const data = await res.json();
+                const serverDate = new Date(data.datetime);
+                const localDate = new Date();
+                offsetGlobal = serverDate.getTime() - localDate.getTime();
+            } catch(e) {
+                // Respaldo matemático si no hay internet (basado en UTC 0 real)
+                const d = new Date();
+                const u = d.getTime() + (d.getTimezoneOffset() * 60000);
+                offsetGlobal = (u - 18000000) - d.getTime();
+            }
+        }
+
+        function update() {
+            const d = new Date();
+            const caribe = new Date(d.getTime() + offsetGlobal);
+
+            const h = String(caribe.getHours()).padStart(2, '0');
+            const m = String(caribe.getMinutes()).padStart(2, '0');
+            const s = String(caribe.getSeconds()).padStart(2, '0');
+
+            document.getElementById('hora-display').textContent = `${h}:${m}:${s}`;
+            const opt = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('fecha-display').textContent = caribe.toLocaleDateString('es-ES', opt);
+        }
+
+        function ir(id) {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.getElementById('menu').classList.remove('active');
+            document.getElementById('m').classList.remove('active');
             window.scrollTo(0,0);
         }
 
-        function toggleNav() { document.getElementById('menu').classList.toggle('active'); }
+        function togg() { document.getElementById('m').classList.toggle('active'); }
 
-        // LÓGICA DE HORA UTC-5 REAL (CORREGIDA)
-        function updateTime() {
-            const now = new Date();
-            
-            // 1. Obtenemos los milisegundos actuales
-            // 2. Sumamos el desfase del teléfono para llegar a UTC 0 (GMT)
-            const utc0 = now.getTime() + (now.getTimezoneOffset() * 60000);
-            
-            // 3. Restamos 5 horas exactas (5 * 60 * 60 * 1000 = 18,000,000 ms)
-            const caribeTime = new Date(utc0 - 18000000);
-
-            const h = String(caribeTime.getHours()).padStart(2, '0');
-            const m = String(caribeTime.getMinutes()).padStart(2, '0');
-            const s = String(caribeTime.getSeconds()).padStart(2, '0');
-
-            document.getElementById('reloj-digital').textContent = `${h}:${m}:${s}`;
-            
-            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-            document.getElementById('fecha-oficial').textContent = caribeTime.toLocaleDateString('es-ES', options).toUpperCase();
-        }
-
-        setInterval(updateTime, 1000);
-        updateTime();
+        sync();
+        setInterval(update, 1000);
     </script>
 </body>
 </html>
