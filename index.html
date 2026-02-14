@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESTADO DEL CARIBE DEL SUR | PORTAL FEDERAL</title>
+    <title>ESTADO DEL CARIBE DEL SUR | PODER CENTRAL</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --negro-absoluto: #000000;
-            --gris-oscuro: #1a1a1a;
-            --oro-brillante: #ffcc00;
+            --negro: #000000;
             --blanco: #ffffff;
-            --rojo-alerta: #ff4444;
+            --gris-borde: #ffffff;
         }
 
-        /* DISEÑO DE ALTO CONTRASTE Y FUENTES GRUESAS */
+        /* FUENTE ULTRA GRUESA PARA MÁXIMA VISIBILIDAD */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
 
-        body { background: #222; color: var(--blanco); padding-top: 100px; }
+        body { background: var(--negro); color: var(--blanco); padding-top: 100px; }
 
-        /* HEADER - NADA DE AZUL OSCURO SOBRE NEGRO */
+        /* HEADER TOTALMENTE NEGRO Y BLANCO */
         header {
-            background: var(--negro-absoluto);
+            background: var(--negro);
             height: 100px;
             width: 100%;
             position: fixed;
@@ -31,14 +29,14 @@
             align-items: center;
             padding: 0 5%;
             z-index: 2000;
-            border-bottom: 6px solid var(--oro-brillante);
+            border-bottom: 8px solid var(--blanco);
         }
 
         .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .brand img { height: 80px; width: auto; background: var(--blanco); padding: 5px; border-radius: 5px; }
-        .brand h1 { color: var(--oro-brillante); font-size: 1.2rem; letter-spacing: 2px; }
+        .brand img { height: 85px; width: auto; background: var(--blanco); padding: 2px; }
+        .brand h1 { color: var(--blanco); font-size: 1.4rem; letter-spacing: 3px; text-transform: uppercase; }
 
-        .menu-toggle { font-size: 2.8rem; color: var(--oro-brillante); cursor: pointer; }
+        .menu-btn { font-size: 3rem; color: var(--blanco); cursor: pointer; }
 
         nav {
             position: fixed;
@@ -46,149 +44,148 @@
             right: -100%;
             width: 100%;
             height: 100vh;
-            background: var(--negro-absoluto);
+            background: var(--negro);
             display: flex;
             flex-direction: column;
             padding: 30px;
-            transition: 0.4s;
+            transition: 0.3s;
             z-index: 1900;
+            border-left: 8px solid var(--blanco);
         }
 
         nav.active { right: 0; }
-        nav a { color: var(--blanco); text-decoration: none; padding: 25px; font-size: 1.8rem; border-bottom: 4px solid var(--oro-brillante); }
+        nav a { color: var(--blanco); text-decoration: none; padding: 25px; font-size: 2rem; border-bottom: 5px solid var(--blanco); }
 
-        /* SECCIONES */
-        section { display: none; padding: 30px 5%; max-width: 1400px; margin: 0 auto; }
-        section.active { display: block; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* SECCIONES IMPACTANTES */
+        section { display: none; padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
+        section.active { display: block; }
 
-        .card-soberana { 
-            background: var(--blanco); 
-            color: var(--negro-absoluto);
-            padding: 40px; 
-            border-radius: 15px; 
-            border: 8px solid var(--oro-brillante);
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
-            margin-bottom: 30px;
+        .panel-soberano { 
+            background: var(--negro); 
+            color: var(--blanco);
+            padding: 50px; 
+            border: 10px solid var(--blanco);
+            margin-bottom: 40px;
         }
 
-        h2 { font-size: 2.5rem; margin-bottom: 25px; background: var(--negro-absoluto); color: var(--oro-brillante); padding: 10px; display: inline-block; }
-        p { font-size: 1.5rem; line-height: 1.4; margin-bottom: 20px; font-weight: 900; }
+        h2 { font-size: 3rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 10px solid var(--blanco); display: block; padding-bottom: 10px; }
+        p { font-size: 1.8rem; line-height: 1.2; margin-bottom: 25px; font-weight: 900; text-transform: uppercase; }
 
-        /* GRID DE 10 ORGANISMOS */
-        .grid-organismos { 
+        /* GRID DE 12 ORGANISMOS (AMPLIADO) */
+        .grid-org { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 25px; 
         }
-        .org-box { 
-            background: var(--gris-oscuro); 
-            padding: 40px; 
-            border: 5px solid var(--oro-brillante); 
+        .box-org { 
+            background: var(--negro); 
+            padding: 50px 20px; 
+            border: 6px solid var(--blanco); 
             text-align: center; 
-            transition: 0.3s;
+            transition: 0.2s;
             cursor: pointer;
         }
-        .org-box:hover { background: var(--oro-brillante); }
-        .org-box:hover i, .org-box:hover h3 { color: var(--negro-absoluto); }
-        .org-box i { font-size: 4rem; color: var(--oro-brillante); margin-bottom: 20px; }
-        .org-box h3 { color: var(--blanco); font-size: 1.6rem; }
+        .box-org:hover { background: var(--blanco); }
+        .box-org:hover i, .box-org:hover h3 { color: var(--negro); }
+        .box-org i { font-size: 5rem; color: var(--blanco); margin-bottom: 25px; }
+        .box-org h3 { font-size: 1.8rem; text-transform: uppercase; }
 
-        /* PDF VISOR */
-        .pdf-frame { width: 100%; height: 85vh; border: 10px solid var(--oro-brillante); border-radius: 10px; }
+        /* VISOR DE LEYES */
+        .pdf-box { width: 100%; height: 85vh; border: 12px solid var(--blanco); }
 
         footer { 
-            background: var(--negro-absoluto); 
+            background: var(--blanco); 
+            color: var(--negro);
             padding: 100px 20px; 
             text-align: center; 
-            border-top: 10px solid var(--oro-brillante); 
         }
-        footer h2 { background: none; font-size: 3rem; color: var(--blanco); }
+        footer h2 { border: none; font-size: 3.5rem; margin-bottom: 10px; color: var(--negro); }
+        footer p { font-size: 1.2rem; }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="brand" onclick="go('inicio')">
+        <a href="#" class="brand" onclick="nav('inicio')">
             <img src="Escudo del Estado del Caribe del Sur.png" alt="ESCUDO">
-            <div class="brand-text">
-                <h1>CARIBE DEL SUR</h1>
-            </div>
+            <h1>CARIBE DEL SUR</h1>
         </a>
-        <div class="menu-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
-        <nav id="nav">
-            <a href="#" onclick="go('inicio')">INICIO</a>
-            <a href="#" onclick="go('historia')">HISTORIA</a>
-            <a href="#" onclick="go('gabinete')">GABINETE</a>
-            <a href="#" onclick="go('constitucion')">CONSTITUCIÓN</a>
-            <a href="#" onclick="go('defensa')">DEFENSA</a>
+        <div class="menu-btn" onclick="togg()"><i class="fas fa-bars"></i></div>
+        <nav id="n">
+            <a href="#" onclick="nav('inicio')">INICIO</a>
+            <a href="#" onclick="nav('historia')">HISTORIA</a>
+            <a href="#" onclick="nav('ministerios')">MINISTERIOS</a>
+            <a href="#" onclick="nav('constitucion')">CONSTITUCIÓN</a>
+            <a href="#" onclick="nav('territorio')">TERRITORIO</a>
         </nav>
     </header>
 
     <section id="inicio" class="active">
-        <div class="card-soberana" style="text-align: center;">
-            <img src="Bandera del Estado del Caribe del Sur.png" style="width: 100%; max-width: 900px; border: 8px solid black;">
-            <h1 style="font-size: 3.5rem; margin-top: 20px;">ESTADO SOBERANO</h1>
-            <p>BIENVENIDO AL PORTAL DE CONTROL CENTRAL. AQUÍ SE GESTIONA EL DESTINO DE NUESTRA NACIÓN.</p>
+        <div class="panel-soberano" style="text-align: center;">
+            <img src="Bandera del Estado del Caribe del Sur.png" style="width: 100%; border: 10px solid white;">
+            <h2 style="margin-top: 40px; border: none;">ESTADO SOBERANO</h2>
+            <p>CENTRO DE MANDO ESTRATÉGICO.</p>
+            <p>AUTORIDAD ABSOLUTA SOBRE EL CARIBE SUR.</p>
         </div>
     </section>
 
     <section id="historia">
-        <div class="card-soberana">
-            <h2>NUESTRA LUCHA</h2>
-            <p>EL ESTADO DEL CARIBE DEL SUR NO PIDE PERMISO. NACIDO DE PACISIA EL 1 DE ENERO DE 2024.</p>
-            <p>EL 13 DE FEBRERO DE 2026 AMPLIAMOS NUESTRAS FRONTERAS POR DERECHO HISTÓRICO Y FUERZA SOBERANA.</p>
+        <div class="panel-soberano">
+            <h2>CRONOLOGÍA DE PODER</h2>
+            <p>1 DE ENERO 2024: PROCLAMACIÓN DE INDEPENDENCIA.</p>
+            <p>13 DE FEBRERO 2026: ANEXIÓN Y CONSOLIDACIÓN TERRITORIAL.</p>
+            <p>EL ESTADO DEL CARIBE DEL SUR NO RECONOCE AUTORIDAD EXTERNA.</p>
         </div>
     </section>
 
-    <section id="gabinete">
-        <h2 style="margin-bottom: 40px;">MINISTERIOS DEL ESTADO</h2>
-        <div class="grid-organismos">
-            <div class="org-box" onclick="go('defensa')"><i class="fas fa-shield-alt"></i><h3>SEGURIDAD Y DEFENSA</h3></div>
-            <div class="org-box"><i class="fas fa-anchor"></i><h3>ALMIRANTAZGO MARÍTIMO</h3></div>
-            <div class="org-box"><i class="fas fa-gavel"></i><h3>JUSTICIA Y LEYES</h3></div>
-            <div class="org-box"><i class="fas fa-university"></i><h3>HACIENDA PÚBLICA</h3></div>
-            <div class="org-box"><i class="fas fa-globe-americas"></i><h3>RELACIONES EXTERIORES</h3></div>
-            <div class="org-box"><i class="fas fa-broadcast-tower"></i><h3>INTELIGENCIA Y COMUNICACIÓN</h3></div>
-            <div class="org-box"><i class="fas fa-tools"></i><h3>OBRAS PÚBLICAS</h3></div>
-            <div class="org-box"><i class="fas fa-briefcase-medical"></i><h3>SALUD NACIONAL</h3></div>
-            <div class="org-box"><i class="fas fa-graduation-cap"></i><h3>EDUCACIÓN SOBERANA</h3></div>
-            <div class="org-box"><i class="fas fa-oil-can"></i><h3>RECURSOS NATURALES</h3></div>
+    <section id="ministerios">
+        <h2>GABINETE NACIONAL</h2>
+        <div class="grid-org">
+            <div class="box-org" onclick="nav('territorio')"><i class="fas fa-shield-alt"></i><h3>SEGURIDAD NACIONAL</h3></div>
+            <div class="box-org"><i class="fas fa-anchor"></i><h3>FUERZAS NAVALES</h3></div>
+            <div class="box-org"><i class="fas fa-gavel"></i><h3>JUSTICIA SUPREMA</h3></div>
+            <div class="box-org"><i class="fas fa-university"></i><h3>HACIENDA Y TESORO</h3></div>
+            <div class="box-org"><i class="fas fa-globe"></i><h3>DIPLOMACIA</h3></div>
+            <div class="box-org"><i class="fas fa-user-secret"></i><h3>INTELIGENCIA</h3></div>
+            <div class="box-org"><i class="fas fa-industry"></i><h3>INDUSTRIA Y ENERGÍA</h3></div>
+            <div class="box-org"><i class="fas fa-broadcast-tower"></i><h3>TELECOMUNICACIONES</h3></div>
+            <div class="box-org"><i class="fas fa-road"></i><h3>INFRAESTRUCTURA</h3></div>
+            <div class="box-org"><i class="fas fa-pills"></i><h3>SALUD PÚBLICA</h3></div>
+            <div class="box-org"><i class="fas fa-book-dead"></i><h3>REGISTRO CIVIL</h3></div>
+            <div class="box-org"><i class="fas fa-helicopter"></i><h3>TRANSPORTE AÉREO</h3></div>
         </div>
     </section>
 
-    <section id="defensa">
-        <div class="card-soberana" style="background: var(--rojo-alerta); color: white; border-color: black;">
-            <h2 style="background: black; color: white;">ESTADO DE ALERTA</h2>
-            <p>LAS FUERZAS DE SEGURIDAD PROTEGEN CADA CENTÍMETRO DEL TERRITORIO ANEXIONADO EL 13 DE FEBRERO.</p>
-            <p>LA VIGILANCIA EN EL MAR CARIBE ES PERMANENTE E INNEGOCIABLE.</p>
+    <section id="territorio">
+        <div class="panel-soberano">
+            <h2>CONTROL TERRITORIAL</h2>
+            <p>ZONA DE EXCLUSIÓN MARÍTIMA ACTIVA.</p>
+            <p>TODOS LOS TERRITORIOS ADQUIRIDOS EL 13 DE FEBRERO ESTÁN BAJO ADMINISTRACIÓN MILITAR DIRECTA.</p>
+            <p>NO SE PERMITE EL TRÁNSITO SIN AUTORIZACIÓN DEL CARIBE DEL SUR.</p>
         </div>
     </section>
 
     <section id="constitucion">
-        <div class="card-soberana">
-            <h2>CARTA MAGNA</h2>
-            <div class="pdf-frame">
-                <iframe src="Constitución%20del%20Estado%20del%20Caribe%20del%20Sur.pdf" width="100%" height="100%"></iframe>
-            </div>
+        <div class="panel-soberano">
+            <h2>CONSTITUCIÓN NACIONAL</h2>
+            <iframe src="Constitución%20del%20Estado%20del%20Caribe%20del%20Sur.pdf" class="pdf-box"></iframe>
         </div>
     </section>
 
     <footer>
-        <img src="Escudo del Estado del Caribe del Sur.png" style="height: 180px; background: white; padding: 10px; margin-bottom: 30px; border: 5px solid gold;">
-        <h2>ESTADO DEL CARIBE DEL SUR</h2>
-        <p style="font-size: 1.5rem; color: var(--oro-brillante);">SOBERANÍA • PODER • JUSTICIA</p>
+        <img src="Escudo del Estado del Caribe del Sur.png" style="height: 200px; background: white; border: 10px solid black; margin-bottom: 20px;">
+        <h2>CARIBE DEL SUR</h2>
+        <p>ORDEN • FUERZA • SOBERANÍA</p>
     </footer>
 
     <script>
-        function go(id) {
+        function nav(id) {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.getElementById('nav').classList.remove('active');
+            document.getElementById('n').classList.remove('active');
             window.scrollTo(0,0);
         }
-
-        function toggleNav() { document.getElementById('nav').classList.toggle('active'); }
+        function togg() { document.getElementById('n').classList.toggle('active'); }
     </script>
 </body>
 </html>
